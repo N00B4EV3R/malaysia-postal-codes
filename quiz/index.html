@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Malaysia Postal Code Prefix Quiz</title>
 
-  <!-- Leaflet CSS -->
+  <!-- Leaflet CSS (CDN with local fallback) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""
+        onerror="this.onerror=null;this.href='lib/leaflet.css'" />
 
   <!-- Quiz styles -->
   <link rel="stylesheet" href="css/styles.css" />
@@ -112,9 +113,10 @@
     </div>
   </div>
 
-  <!-- Leaflet JS -->
+  <!-- Leaflet JS (CDN with local fallback) -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLaA=" crossorigin=""></script>
+  <script>window.L || document.write('<script src="lib\/leaflet.js"><\/script>')</script>
 
   <!-- Quiz data & logic -->
   <script src="js/postal-data.js"></script>

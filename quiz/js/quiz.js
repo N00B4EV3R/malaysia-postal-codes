@@ -42,7 +42,10 @@
 
   // ─── Init map ────────────────────────────────────────────────────────────────
   function initMap() {
-    if (state.map) return;
+    if (state.map) {
+      state.map.invalidateSize();
+      return;
+    }
 
     state.map = L.map('map', {
       zoomControl: true,
@@ -348,21 +351,26 @@
 
     // Start button
     $('btn-start').addEventListener('click', () => {
-      initMap();
-      // Load GeoJSON if not yet done
-      if (!state.geojsonLayer) {
-        loadGeoJSON()
-          .then(data => {
-            buildGeoJSONLayer(data);
-            startQuiz();
-          })
-          .catch(err => {
-            console.error('Failed to load GeoJSON:', err);
-            alert('Failed to load map data. Please try again.');
-          });
-      } else {
-        startQuiz();
-      }
+      // Show quiz screen first so the map div has proper dimensions
+      showScreen('quiz-screen');
+
+      // Small delay so the browser paints the screen before Leaflet measures the div
+      setTimeout(() => {
+        initMap();
+        if (!state.geojsonLayer) {
+          loadGeoJSON()
+            .then(data => {
+              buildGeoJSONLayer(data);
+              startQuiz();
+            })
+            .catch(err => {
+              console.error('Failed to load GeoJSON:', err);
+              alert('Failed to load map data. Please try again.');
+            });
+        } else {
+          startQuiz();
+        }
+      }, 50);
     });
 
     // Replay button (same settings)
