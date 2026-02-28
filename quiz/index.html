@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malaysia Postal Code Prefix Quiz</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Quiz styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       START SCREEN
+  ============================================================ -->
+  <div id="start-screen" class="screen">
+    <div class="start-content">
+      <div class="flag-icon">🇲🇾</div>
+      <h1>Malaysia Postcode Quiz</h1>
+      <p class="subtitle">
+        Can you match the 2-digit postal prefix to the correct state on the map?
+      </p>
+
+      <!-- Mode selection -->
+      <div class="options-grid">
+        <label class="option-card selected">
+          <input type="radio" name="quiz-mode" id="mode-state" value="state" checked />
+          <div class="option-card-text">
+            <strong>State mode (16 questions)</strong>
+            <span>One representative prefix per state — great for beginners</span>
+          </div>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="quiz-mode" id="mode-prefix" value="prefix" />
+          <div class="option-card-text">
+            <strong>All prefixes mode (76 questions)</strong>
+            <span>Every 2-digit prefix — the full challenge</span>
+          </div>
+        </label>
+      </div>
+
+      <!-- Timer toggle -->
+      <div class="timer-row">
+        <label>
+          <input type="checkbox" id="timer-toggle" />
+          Enable timer (15 seconds per question)
+        </label>
+      </div>
+
+      <button class="btn-start" id="btn-start">Start Quiz ▶</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       QUIZ SCREEN
+  ============================================================ -->
+  <div id="quiz-screen" class="screen">
+
+    <!-- Top bar: score + progress -->
+    <div class="top-bar">
+      <span class="score-badge" id="score-display">0 / 0</span>
+      <div class="progress-section">
+        <div class="progress-label" id="progress-label">Question 1</div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="progress-bar"></div>
+        </div>
+      </div>
+      <div class="timer-display" id="timer-display" aria-live="polite"></div>
+    </div>
+
+    <!-- Question banner -->
+    <div class="question-banner">
+      <span class="question-label">Find prefix</span>
+      <span class="prefix-display" id="prefix-display">—</span>
+      <span class="question-instruction">Click the matching region on the map</span>
+      <span class="feedback-message" id="feedback-message"></span>
+    </div>
+
+    <!-- Leaflet map container -->
+    <div id="map" role="application" aria-label="Map of Malaysia — click the region matching the displayed prefix"></div>
+
+  </div>
+
+  <!-- ============================================================
+       END SCREEN
+  ============================================================ -->
+  <div id="end-screen" class="screen">
+    <div class="end-content">
+      <div class="result-icon" id="result-icon">🎉</div>
+      <h2>Quiz Complete!</h2>
+      <p class="result-subtitle" id="result-subtitle">Well done!</p>
+
+      <div class="score-summary">
+        <div class="stat-card">
+          <span class="stat-value" id="final-score">0 / 0</span>
+          <span class="stat-label">Score</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="final-pct">0%</span>
+          <span class="stat-label">Accuracy</span>
+        </div>
+      </div>
+
+      <div class="end-actions">
+        <button class="btn-replay" id="btn-replay">Play Again 🔄</button>
+        <button class="btn-home" id="btn-home">Change Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLaA=" crossorigin=""></script>
+
+  <!-- Quiz data & logic -->
+  <script src="js/postal-data.js"></script>
+  <script src="js/quiz.js"></script>
+
+</body>
+</html>
