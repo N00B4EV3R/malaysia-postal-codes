@@ -29,8 +29,10 @@ for (const [state, prefixes] of Object.entries(POSTAL_DATA)) {
 // All unique states (for state-level mode)
 const ALL_STATES = Object.keys(POSTAL_DATA);
 
-// All prefixes (for prefix-level mode)
-const ALL_PREFIXES = Object.values(POSTAL_DATA).flat().sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+// All prefixes (for prefix-level mode), sorted numerically
+const ALL_PREFIXES = Object.values(POSTAL_DATA)
+  .flat()
+  .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
 // State display names (for UI)
 const STATE_DISPLAY_NAMES = {

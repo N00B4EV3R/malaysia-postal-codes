@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Malaysia Postal Code Prefix Quiz</title>
 
-  <!-- Leaflet CSS (CDN with local fallback) -->
+  <!-- Leaflet CSS (CDN preferred; falls back to bundled copy if CDN is unavailable) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""
         onerror="this.onerror=null;this.href='lib/leaflet.css'" />
@@ -83,6 +83,11 @@
 
     <!-- Leaflet map container -->
     <div id="map" role="application" aria-label="Map of Malaysia — click the region matching the displayed prefix"></div>
+
+    <!-- Map load error (hidden by default) -->
+    <div id="map-error" style="display:none; padding:24px; text-align:center; color:var(--color-primary); font-size:1rem;">
+      ⚠️ Failed to load map data. Please <a href="" onclick="location.reload();return false;" style="color:var(--color-secondary);">reload the page</a> and try again.
+    </div>
 
   </div>
 

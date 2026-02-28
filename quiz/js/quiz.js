@@ -71,7 +71,7 @@
   // ─── Load GeoJSON ────────────────────────────────────────────────────────────
   async function loadGeoJSON() {
     const resp = await fetch('data/malaysia.geojson');
-    if (!resp.ok) throw new Error('Failed to load GeoJSON');
+    if (!resp.ok) throw new Error(`Failed to load GeoJSON: ${resp.status} ${resp.statusText}`);
     return resp.json();
   }
 
@@ -365,7 +365,8 @@
             })
             .catch(err => {
               console.error('Failed to load GeoJSON:', err);
-              alert('Failed to load map data. Please try again.');
+              $('map').style.display = 'none';
+              $('map-error').style.display = 'block';
             });
         } else {
           startQuiz();
